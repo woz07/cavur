@@ -7,7 +7,7 @@ import static com.raylib.Raylib.*;
 
 public class Game {
     public static void main(String[] args) {
-        //8 height x 6 width
+        // 8 height x 6 width
         final int width  = 640;
         final int height = 480;
         final int block  = 80 ;
@@ -19,7 +19,7 @@ public class Game {
                         "--RRRR--~" +
                         "P-------~" ;
 
-        //---START[ALGO]---
+        //---START[LEVEL-TO-BLOCKS-ARRAY-ALGO]---
         // Takes a string of levels and then splits it up and stores it in a char array
         // called 'BLOCKS' which will essentially render the blocks, each character gets
         // its own x and y position in BLOCKS
@@ -48,13 +48,42 @@ public class Game {
 //            System.out.println();
 //        }
 
-        //---END[ALGO]---
+        //---END[LEVEL-TO-BLOCKS-ARRAY-ALGO]---
 
         InitWindow(width, height, "Cavur");
 
         while (!WindowShouldClose()) {
             BeginDrawing();
             ClearBackground(RAYWHITE);
+
+            //---START[DRAWING-BLOCKS-ALGO]---
+            // The algorithm to draw the contents of BLOCKS to the window
+
+            // We loop through the height (8) and width (6) of BLOCK
+            // First we loop through the y-axis as that's what will increment and help us go downwards the BLOCK array
+            for (int y = 0; y < height / block; y++) {
+                for (int x = 0; x < width / block; x++) {
+                    // We check if the current x and y coordinates equal 'R', which is a platform
+                    // If so, we multiply x and y by block, as block is the standard size of everything in the game and draw it to the screen
+                    if (BLOCKS[x][y] == 'R') {
+                        DrawRectangle(x * block, y * block, 80, 80, BLACK);
+                        continue;
+                    }
+                    // If x and y is the exit we do the same thing as platform but just change the colour
+                    if (BLOCKS[x][y] == 'E') {
+                        DrawRectangle(x * block, y * block, 80, 80, GREEN);
+                        continue;
+                    }
+                    // Same thing done to player (P) as exit (E)
+                    if (BLOCKS[x][y] == 'P') {
+                        DrawRectangle(x * block, y * block, 80, 80, RED);
+                    }
+                    // We don't need to draw anything if it's empty (-)
+                }
+            }
+
+            //---END[DRAWING-BLOCKS-ALGO]---
+
             EndDrawing();
         }
 
