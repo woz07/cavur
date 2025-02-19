@@ -24,12 +24,17 @@ public class Game {
         // called 'BLOCKS' which will essentially render the blocks, each character gets
         // its own x and y position in BLOCKS
 
+        // We split the entire string line by line based of '~'
         String[] lines = level.split("~");
         char[][] BLOCKS = new char[width / block][height / block];
 
         // The actual updating
+        // We can set 'y' to the increment as we go along each line
         for (int y = 0; y < lines.length; y++) {
+            // We store the line into an array for processing reasons
             char[] array = lines[y].toCharArray();
+            // We loop through of the values within the array
+            // As we go along the x-axis we just add to the BLOCKS array with previous y variable
             for (int x = 0; x < array.length; x++) {
                 BLOCKS[x][y] = array[x];
             }
