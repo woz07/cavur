@@ -3,6 +3,10 @@ package github.woz07.cavur;
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
 
+/**
+ * Game.java
+ * The main entry point of the program that renders everything, contains all the logic.
+ */
 public class Game {
     public static void main(String[] args) {
         // 8 height x 6 width
