@@ -1,6 +1,4 @@
-package github.woz07;
-
-import java.util.Arrays;
+package github.woz07.cavur;
 
 import static com.raylib.Colors.*;
 import static com.raylib.Raylib.*;
